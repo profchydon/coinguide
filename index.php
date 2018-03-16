@@ -48,48 +48,101 @@
                  </thead>
                  <tbody>
 
-                    <?php
-                    $counter = 1;
+                   <?php
 
-                    // Loop through coins array to get details for each coin
-                    foreach ($coins as $key => $coin) {
+                   // Lets fetch record from database
+                   $records = fetchRecords();
 
-                      $coin_delisted = $coin['delisted'];
+                   //  Get Previous Top coin
+                   $prev_top_coin_details = GetPrevTopCoin();
 
-                      $coin_disabled = $coin['disabled'];
+                   $prev_top_coin = $prev_top_coin_details[0]['coin'];
 
-                      // drop delisted coins
-                      if ((!$coin_delisted)) {
+                   $prev_top_coin_currency = $prev_top_coin_details[0]['currencypair'];
 
-                         // drop disabled coins
-                         if ((!$coin_disabled)) {
+                   $prev_top_coin_buy_trade = $prev_top_coin_details[0]['buy'];
 
+                   $prev_top_coin_current_buy_trade = GetPrevTopCoinNewBuyTrade($prev_top_coin_currency);
 
+                   $prev_top_coin_current_buy_trade = $prev_top_coin_current_buy_trade[0]['current_buy'];
 
-                            // Get the coin abbreviation example Bitcoin (BTC), Ethereum (ETH)
-                            $currency = $key;
+                   //  echo "<pre>";
+                    //
+                   //  var_dump($records);
 
-                            // Form a currency pair with the abbreviation example BTC_ETH
-                            $currencypair = "BTC_".$key;
+                    $total_trade_volume_resources = selectTotalCurrentBuy();
 
-                            //Get coin name
-                            $coin_name = $coin['name']; ?>
+                    $previous_total_trade_volume = 0;
 
-                            <tr>
-                               <td><?=$counter;?></td>
-                               <td><?=$coin_name;?></td>
-                               <td><?= $currencypair; ?></td>
+                    $current_total_trade_volume = 0;
 
-                            </tr>
-                    <?php
-                      $counter++;
-                      }
+                    $percentage_array = array();
+
+                    foreach ($total_trade_volume_resources as $key => $total_trade_volume_resource) {
+
+                         $previous_total_trade_volume += $total_trade_volume_resource['buy'];
+
+                         $current_total_trade_volume += $total_trade_volume_resource['current_buy'];
                     }
 
-                  }
+                    // Initialize counter
+                    $counter = 1;
 
-                  ?>
+                    // Loop through records
+                    foreach ($records as $key => $record) {
 
+                           $new_value = $record['current_buy'];
+                           $old_value = $record['buy'];
+
+                           $difference = abs($new_value - $old_value);
+
+                           $previous_percentage = (($old_value / $previous_total_trade_volume ) * 100);
+
+                           $previous_percentage  = round( $previous_percentage , 2, PHP_ROUND_HALF_EVEN);
+
+                           $current_percentage = (($new_value / $current_total_trade_volume ) * 100);
+
+                           $current_percentage = round( $current_percentage , 2, PHP_ROUND_HALF_EVEN);
+
+                           $difference_in_trade = abs($current_total_trade_volume - $previous_total_trade_volume);
+
+                           $percentage_change = ((($new_value - $old_value) / $difference_in_trade) * 100);
+
+                           $percentage_change  = round( $percentage_change , 2, PHP_ROUND_HALF_EVEN);
+
+                           $percentage_array[$record['coin']] = $percentage_change;
+
+                           //$update = updatePercentageChange ($percentage_change, $record['currencypair']);
+
+                 ?>
+                            <tr>
+                              <td><?=$counter;?></td>
+                              <td><?=$record['coin'];?></td>
+                              <td>BTC_<?=$record['currencypair'];?></td>
+                              <td><?=$record['buy'];?></td>
+                              <td><?=$previous_total_trade_volume ;?></td>
+                              <td><?=$previous_percentage?>%</td>
+                              <td><?=$record['current_buy'];?></td>
+                              <td><?=$current_total_trade_volume ;?></td>
+                              <td><?=$current_percentage?>%</td>
+
+                            </tr>
+
+                    <?php
+                            $counter++;
+                            }
+
+                            arsort($percentage_array);
+
+                            // Get the top coin as the most popular coin
+                            $most_popular_coin = array_keys($percentage_array)[0];
+                            $most_popular_coin_value = array_values($percentage_array)[0];
+
+                            $current_top_coin_details = GetCurrentTopCoinDetails($most_popular_coin);
+
+                            $word = $prev_top_coin_current_buy_trade < $prev_top_coin_buy_trade ? "an increase" : "a decrease";
+
+                     ?>
 
 
                </tbody>

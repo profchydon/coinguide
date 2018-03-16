@@ -1,9 +1,9 @@
 <?php
 
-  include '../function/functions.php';
+  include 'function/functions.php';
 
   $coins = getAllCoins();
 
-  
+
 
 ?>

@@ -19,7 +19,7 @@
 
 
     // This function fetches the static record in the database
-    function fetchRecords () {
+    function fetchRecord () {
         require 'database/database.php';
         $query = $pdo->prepare('SELECT * FROM previous ORDER BY current_buy DESC LIMIT 10');
         // $query = $pdo->prepare('SELECT * FROM previous ORDER BY buy DESC');

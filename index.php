@@ -51,7 +51,7 @@
                    <?php
 
                    // Lets fetch record from database
-                   $records = fetchRecords();
+                   $records = fetchRecord();
 
                    //  Get Previous Top coin
                    $prev_top_coin_details = GetPrevTopCoin();

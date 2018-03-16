@@ -1,4 +1,8 @@
+<?php
 
+    include 'include/main.php';
+
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +47,48 @@
                      </tr>
                  </thead>
                  <tbody>
+
+                    <?php
+                    $counter = 1;
+
+                    // Loop through coins array to get details for each coin
+                    foreach ($coins as $key => $coin) {
+
+                      $coin_delisted = $coin['delisted'];
+
+                      $coin_disabled = $coin['disabled'];
+
+                      // drop delisted coins
+                      if ((!$coin_delisted)) {
+
+                         // drop disabled coins
+                         if ((!$coin_disabled)) {
+
+
+
+                            // Get the coin abbreviation example Bitcoin (BTC), Ethereum (ETH)
+                            $currency = $key;
+
+                            // Form a currency pair with the abbreviation example BTC_ETH
+                            $currencypair = "BTC_".$key;
+
+                            //Get coin name
+                            $coin_name = $coin['name']; ?>
+
+                            <tr>
+                               <td><?=$counter;?></td>
+                               <td><?=$coin_name;?></td>
+                               <td><?= $currencypair; ?></td>
+
+                            </tr>
+                    <?php
+                      $counter++;
+                      }
+                    }
+
+                  }
+
+                  ?>
 
 
 

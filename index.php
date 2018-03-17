@@ -155,7 +155,30 @@
               <div class="alert alert-success" role="alert">
                   <h4>Who is gaining the shift?</h4>
 
+                  <p>
+                      <b>Top Coin 5mins ago:</b> <br>
+                      <?=$prev_top_coin?> (<?=$prev_top_coin_currency?>) was the most popular coin 5mins ago with <?=$prev_top_coin_buy_trade?> buys trades but has declined in trade having <?=$prev_top_coin_current_buy_trade;?> buys 5mins later.
+                  </p>
+                  <br>
+                  <hr>
+                  <p>
+                      <b>Current Top Coin:</b> <br>
+                      <?php
 
+                      if ($prev_top_coin_current_buy_trade < $prev_top_coin_buy_trade) { ?>
+
+                        <?=$most_popular_coin?> seems to be gaining the attention right now at the expense <?=$prev_top_coin?> of  having just <?=$current_top_coin_details[0]['buy']?> buys 5mins ago but has recently increased to <?=$current_top_coin_details[0]['current_buy']?>  with a percentage shift of <?=$most_popular_coin_value?>%
+
+                  <?php
+                      }else { ?>
+
+                          There is no shift because the last popular coin <?=$prev_top_coin?> (<?=$prev_top_coin_currency?>) is still gaining attention.
+
+                  <?php
+
+                      }
+
+                  ?>
 
                   </p>
               </div>

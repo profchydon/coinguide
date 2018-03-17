@@ -1,6 +1,22 @@
 <?php
 
+    error_reporting(E_ALL);
+
+    header("Refresh: 120; url=index.php");
+
     include 'include/main.php';
+
+    $last_time = selectPastTime();
+
+    $last_time = $last_time[0]['date_saved'];
+
+    $now = time();
+
+    $diff =  $now - $last_time;
+
+    if ($diff > 300) {
+        redirect('process.php');
+    }
 
  ?>
 

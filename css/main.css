@@ -1,3 +1,44 @@
+.holder {
+    background-image: url('../img/alt2.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 675px;
+}
+
+.container {
+    padding: 0px !important;
+    /* margin: 0px; */
+}
+
+img.img.img-responsive.logo {
+    width: 200px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: transparent;
+    border-color: #c2c5c7;
+}
+
+.up-row {
+    margin: 30px;
+}
+
+.home-content {
+    text-align: center;
+}
+
+.home-h1 {
+    font-size: 60px;
+    color: #fff;
+}
+
+.home-h3 {
+    font-size: 26px;
+    color: #fff;
+}
+
 .col-md-3.currency_tab {
     padding: 10px;
     border: 1px solid #989797

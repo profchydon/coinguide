@@ -1,7 +1,5 @@
 <?php
 
-    error_reporting(E_ALL);
-
     header("Refresh: 120; url=index.php");
 
     include 'include/main.php';

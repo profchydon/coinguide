@@ -32,12 +32,37 @@ function selectMarketID()
 {
 
   require '../database/database.php';
-  $query = $pdo->prepare('SELECT market_id FROM coinexchange LIMIT 15');
+  $query = $pdo->prepare('SELECT market_id FROM coinexchange');
   if ($query->execute()) {
     $records = $query->fetchAll(PDO::FETCH_ASSOC);
     return $records;
   }
 
 }
+
+  function all ()
+  {
+
+    require '../database/database.php';
+    $query = $pdo->prepare('SELECT * FROM coinexchange ORDER BY buy DESC LIMIT 20');
+    if ($query->execute()) {
+      $records = $query->fetchAll(PDO::FETCH_ASSOC);
+      return $records;
+    }
+
+  }
+
+  function allEmptyBuys ()
+  {
+
+    require '../database/database.php';
+    $query = $pdo->prepare('SELECT * FROM coinexchange WHERE buy IS NULL');
+    if ($query->execute()) {
+      $records = $query->fetchAll(PDO::FETCH_ASSOC);
+      return $records;
+    }
+
+  }
+
 
  ?>

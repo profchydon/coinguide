@@ -1,10 +1,106 @@
 <?php
 
-    $m = file_get_contents("https://www.coinexchange.io/api/v1/getmarkets");
+    include '../function/coinexchange.php';
 
-    $m = json_decode($m , true);
-
-    echo "<pre>";
-    var_dump($m);
+    $records = all();
 
  ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Popular Cryptocurrencies</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+    <!-- <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/script.js"></script> -->
+</head>
+
+<body>
+  <div id="banner">
+      <p class=""> <img class="img img-responsive market-logo" src="../img/logo.png" alt=""></p>
+  </div>
+    <h2 id="heading">Coinexchange Cryptocurrencies Trade Guide</h2>
+    <!-- <h5>Sorted by popularity, in descending order</h5> -->
+    <div class="container">
+
+      <div class="row">
+
+          <div class="col-md-12">
+             <h4>Top Gaining Cryptocurrencies</h4>
+             <table class="table table-striped table-responsive">
+                 <thead>
+                     <tr>
+                         <th>S/no</th>
+                         <th>Coin</th>
+                         <th>Currency Pair</th>
+                         <th>Buy trade Vol.</th>
+                         <th>Total buy trade vol.</th>
+                         <th>% Change</th>
+                         <!-- <th>Current Buy trade Vol.</th>
+                         <th>Current Total buy trade volume</th>
+                         <th>% of coin in total buy trade volume</th> -->
+
+                     </tr>
+                 </thead>
+                 <tbody>
+
+                   <?php
+
+                    // Initialize counter
+                    $counter = 1;
+
+                    // Loop through records
+                    foreach ($records as $key => $record) {
+
+                 ?>
+                            <tr>
+                              <td><?=$counter;?></td>
+                              <td><?=$record['coin'];?></td>
+                              <td>BTC_<?=$record['currencypair'];?></td>
+                              <td><?=$record['buy'];?></td>
+                              <td><?=$record['buy'];?></td>
+                              <td><?=$record['change'];?></td>
+                              <!-- <td><?=$record['buy'];?></td>
+                              <td><?=$record['buy'];?></td>
+                              <td><?=$record['change'];?></td> -->
+
+                            </tr>
+
+                    <?php
+                            $counter++;
+                            }
+
+                            // arsort($percentage_array);
+                            //
+                            // // Get the top coin as the most popular coin
+                            // $most_popular_coin = array_keys($percentage_array)[0];
+                            // $most_popular_coin_value = array_values($percentage_array)[0];
+                            //
+                            // $current_top_coin_details = GetCurrentTopCoinDetails($most_popular_coin);
+                            //
+                            // $word = $prev_top_coin_current_buy_trade < $prev_top_coin_buy_trade ? "an increase" : "a decrease";
+
+                     ?>
+
+
+               </tbody>
+               </table>
+
+          </div>
+
+
+
+
+      </div>
+
+
+
+    </div>
+
+</body></html>

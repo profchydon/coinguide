@@ -1,12 +1,12 @@
 # COINGUIDE
 
-**Name:** Coinguide 
-**Contributors:** Chidi Nkwocha
-**Programmed with:** PHP
-**Requires at least:** php 5.4 
-**Major Dependencies:** bootstrap & JQuery
-**License:** MIT License
-**License URI:** https://opensource.org/licenses/MIT
+**Name:** Coinguide <br>
+**Contributors:** Chidi Nkwocha <br>
+**Programmed with:** PHP <br>
+**Requires at least:** php 5.4  <br>
+**Major Dependencies:** bootstrap & JQuery <br>
+**License:** MIT License <br>
+**License URI:** https://opensource.org/licenses/MIT <br>
 
 
 ## Short Summary:

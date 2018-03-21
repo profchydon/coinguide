@@ -1,5 +1,5 @@
 .holder {
-    background-image: url('../img/alt2.png');
+    background-image: url('../img/alt3.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -9,6 +9,16 @@
 .container {
     padding: 0px !important;
     /* margin: 0px; */
+}
+
+img.img.img-responsive.market-logo {
+    width: 160px;
+}
+
+img.img.img-responsive.centerimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 img.img.img-responsive.logo {
@@ -32,6 +42,9 @@ img.img.img-responsive.logo {
 .home-h1 {
     font-size: 60px;
     color: #fff;
+    text-transform: capitalize;
+    font-style: italic;
+    font-weight: bolder;
 }
 
 .home-h3 {
@@ -61,13 +74,17 @@ thead {
     border: 1px solid #f9f9f9;
 }
 
+.logo-holder {
+    padding: 21px;
+}
+
 * {
     padding: 0px;
     margin: 0px;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Bree Serif', serif;
     margin: 0px;
     padding: 0px;
 }
@@ -83,7 +100,7 @@ body {
     align-content: center;
     align-items: center;
     color: white;
-    padding: 0px 60px;
+    padding: 15px 40px;
     font-size: 24px;
     text-align: left;
 }

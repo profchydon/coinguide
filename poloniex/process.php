@@ -11,7 +11,7 @@
     **  Save processed data in current table
     **/
 
-    require_once 'function/functions.php';
+    require_once '../function/functions.php';
 
     // Lets Delete all records in the previous table
     deletePreviousRecords();
@@ -133,6 +133,6 @@
 
 
 
-    redirect('index.php');
+    redirect('market.php');
 
 ?>

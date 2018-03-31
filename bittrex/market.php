@@ -1,5 +1,25 @@
 <?php
     include '../function/bittrex.php';
+
+    if (isset($_POST['go'])) {
+
+      function redirect($location) {
+          header("Location: " . $location);
+          exit;
+      }
+
+      $market = htmlentities(strip_tags($_POST['market']));
+
+      $market = "../".$market."/market.php";
+
+      redirect($market);
+
+    }
+
+    $records = getAll();
+    //
+    // echo "<pre>";
+    // var_dump($coins);
  ?>
 
 <!DOCTYPE html>
@@ -21,6 +41,33 @@
   <div id="banner">
       <p class=""> <img class="img img-responsive market-logo" src="../img/logo.png" alt=""></p>
   </div>
+
+  <div class="row">
+      <form class="" action="" method="post">
+
+          <div class="col-md-offset-7 col-md-3">
+            <div class="form-group">
+
+              <select class="form-control" name="market" id="select">
+                <option value="option" selected="" disabled="">Select an exchange to view market data</option>
+                <option value="poloniex">Poloniex</option>
+                <option value="coinexchange">Coinexchange</option>
+                <option value="bittrex">Bittrex</option>
+                <option value="kucoin">Kucoin</option>
+                <option value="binance">Binance</option>
+              </select>
+           </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-group">
+                 <button type="submit" id="btn" class="btn btn-primary" name="go">View Market Data</button>
+            </div>
+          </div>
+
+      </form>
+  </div>
+
     <h2 id="heading">Bittrex Cryptocurrencies Trade Guide</h2>
     <!-- <h5>Sorted by popularity, in descending order</h5> -->
     <div class="container">
@@ -32,21 +79,46 @@
              <table class="table table-striped table-responsive">
                  <thead>
                      <tr>
+
                          <th>S/no</th>
                          <th>Coin</th>
                          <th>Currency Pair</th>
                          <th>Buy trade Vol.</th>
-                         <th>Total buy trade vol.</th>
+                         <th>Buy trade Vol. 5mins ago</th>
+                         <!-- <th>Total buy trade vol.</th> -->
+
                          <th>% Change</th>
-                         <!-- <th>Current Buy trade Vol.</th>
-                         <th>Current Total buy trade volume</th>
-                         <th>% of coin in total buy trade volume</th> -->
 
                      </tr>
                  </thead>
                  <tbody>
 
+                   <?php
 
+                    // Initialize counter
+                    $counter = 1;
+
+                    // Loop through records
+                    foreach ($records as $key => $record) {
+
+                 ?>
+                            <tr>
+                              <td><?=$counter;?></td>
+                              <td><?=$record['coin'];?></td>
+                              <td><?=$record['currencypair'];?></td>
+                              <td><?=$record['buy'];?></td>
+                              <td><?=$record['current_buy'];?></td>
+
+
+                              <td><?=$record['buy'];?></td>
+
+                            </tr>
+
+                    <?php
+                            $counter++;
+                            }
+
+                     ?>
 
                </tbody>
                </table>

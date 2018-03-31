@@ -1,7 +1,6 @@
 <?php
 
-function getCoins ()
-{
+function getCoins () {
 
     $coins = file_get_contents('https://bittrex.com/api/v1.1/public/getmarkets');
 
@@ -15,19 +14,62 @@ function getCoins ()
 
 }
 
-function saveData($coin, $currencypair)
+function saveData($coin, $currencypair) {
+
+    require '../database/database.php';
+    $query = $pdo->prepare('INSERT into bittrex (coin , currencypair) values (:coin , :currencypair) ');
+    $query->bindParam(':coin' , $coin);
+    $query->bindParam(':currencypair' , $currencypair);
+
+    if ($query->execute()) {
+
+      return true;
+
+    }else {
+
+      return false;
+
+    }
+
+}
+
+function getAll ()
 {
+
   require '../database/database.php';
-  $query = $pdo->prepare('INSERT into bittrex (coin , currencypair) values (:coin , :currencypair) ');
-  $query->bindParam(':coin' , $coin);
-  $query->bindParam(':currencypair' , $currencypair);
+  $query = $pdo->prepare('SELECT * FROM bittrex ORDER BY current_buy DESC LIMIT 30');
 
   if ($query->execute()) {
-    return true;
-  }else {
-    return false;
+
+    $data = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
   }
 
+}
+
+
+function getMarketSummary ($currencypair)
+{
+
+    $market_summary = file_get_contents('https://bittrex.com/api/v1.1/public/getmarketsummary?market='.$currencypair);
+
+    return $market_summary;
+
+}
+
+function updateBittrexTable ($buy, $trade_volume, $currencypair)
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('UPDATE bittrex SET current_buy = :buy, trade_volume = :trade_volume WHERE currencypair = :currencypair');
+    $query->bindParam(':buy' , $buy);
+    $query->bindParam(':trade_volume' , $trade_volume);
+    $query->bindParam(':currencypair' , $currencypair);
+    if ($query->execute()) {
+        return true;
+    }else {
+      return false;
+    }
 }
 
 ?>

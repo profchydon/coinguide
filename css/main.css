@@ -93,6 +93,12 @@ body {
     display: none;
 }
 
+#btn {
+    color: #fff;
+    background-color: #424242;
+    border-color: #171717;
+}
+
 #banner {
     background: #424242;
     display: block;
@@ -103,6 +109,7 @@ body {
     padding: 15px 40px;
     font-size: 24px;
     text-align: left;
+    margin-bottom: 30px;
 }
 
 #banner1 {

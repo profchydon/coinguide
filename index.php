@@ -73,6 +73,7 @@
                         <option value="option" selected="" disabled="">Select an option</option>
                         <option value="poloniex">Poloniex</option>
                         <option value="coinexchange">Coinexchange</option>
+                        <option value="bittrex">Bittrex</option>
                         <option value="kucoin">Kucoin</option>
                         <option value="binance">Binance</option>
                       </select>

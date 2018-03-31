@@ -37,7 +37,22 @@ function getAll ()
 {
 
   require '../database/database.php';
-  $query = $pdo->prepare('SELECT * FROM bittrex ORDER BY current_buy DESC LIMIT 30');
+  $query = $pdo->prepare('SELECT * FROM bittrex ORDER BY current_buy DESC LIMIT 200');
+
+  if ($query->execute()) {
+
+    $data = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    return $data;
+  }
+
+}
+
+function getTotalBuyVolume ()
+{
+
+  require '../database/database.php';
+  $query = $pdo->prepare('SELECT buy , current_buy FROM bittrex');
 
   if ($query->execute()) {
 

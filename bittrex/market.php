@@ -1,6 +1,20 @@
 <?php
     include '../function/bittrex.php';
 
+    $current = getTotalBuyVolume ();
+
+    $total_buy_volume = 0;
+
+    $total_buy_volume_5mins_ago = 0;
+
+    foreach ($current as $key => $buy) {
+
+      $total_buy_volume = $total_buy_volume + $buy['current_buy'];
+
+      $total_buy_volume_5mins_ago = $total_buy_volume_5mins_ago + $buy['buy'];
+
+    }
+
     if (isset($_POST['go'])) {
 
       function redirect($location) {
@@ -17,9 +31,7 @@
     }
 
     $records = getAll();
-    //
-    // echo "<pre>";
-    // var_dump($coins);
+
  ?>
 
 <!DOCTYPE html>
@@ -84,9 +96,9 @@
                          <th>Coin</th>
                          <th>Currency Pair</th>
                          <th>Buy trade Vol.</th>
+                         <th>Total buy trade vol.</th>
                          <th>Buy trade Vol. 5mins ago</th>
-                         <!-- <th>Total buy trade vol.</th> -->
-
+                         <th>Total buy trade vol. 5 mins ago</th>
                          <th>% Change</th>
 
                      </tr>
@@ -101,16 +113,23 @@
                     // Loop through records
                     foreach ($records as $key => $record) {
 
+                      $base_buy = $record['current_buy'] - $record['buy'];
+                      $base_buy_trade_volume = $total_buy_volume_5mins_ago - $total_buy_volume;
+
+                      $change = ($base_buy / $base_buy_trade_volume);
+
+                      $change = round( $change , 2, PHP_ROUND_HALF_EVEN);
+
                  ?>
                             <tr>
                               <td><?=$counter;?></td>
                               <td><?=$record['coin'];?></td>
                               <td><?=$record['currencypair'];?></td>
                               <td><?=$record['buy'];?></td>
+                              <td><?=$total_buy_volume_5mins_ago?></td>
                               <td><?=$record['current_buy'];?></td>
-
-
-                              <td><?=$record['buy'];?></td>
+                              <td><?=$total_buy_volume;?></td>
+                              <td><?=$change;?></td>
 
                             </tr>
 

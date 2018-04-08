@@ -1,6 +1,7 @@
 <?php
+    include '../function/hitbtc.php';
 
-    include '../function/coinexchange.php';
+    $coins = getAll();
 
     if (isset($_POST['go'])) {
 
@@ -17,7 +18,6 @@
 
     }
 
-    $records = all();
 
  ?>
 
@@ -47,7 +47,7 @@
 
    ?>
 
-    <h2 id="heading">Coinexchange Cryptocurrencies Trade Guide</h2>
+    <h2 id="heading">HitBTC Cryptocurrencies Trade Guide</h2>
     <!-- <h5>Sorted by popularity, in descending order</h5> -->
     <div class="container">
 
@@ -58,55 +58,52 @@
              <table class="table table-striped table-responsive">
                  <thead>
                      <tr>
+
                          <th>S/no</th>
                          <th>Coin</th>
                          <th>Currency Pair</th>
                          <th>Buy trade Vol.</th>
                          <th>Total buy trade vol.</th>
+                         <th>Buy trade Vol. 5mins ago</th>
+                         <th>Total buy trade vol. 5 mins ago</th>
                          <th>% Change</th>
-                         <!-- <th>Current Buy trade Vol.</th>
-                         <th>Current Total buy trade volume</th>
-                         <th>% of coin in total buy trade volume</th> -->
 
                      </tr>
                  </thead>
                  <tbody>
 
-                   <?php
+                    <?php
 
-                    // Initialize counter
-                    $counter = 1;
+                        $counter = 1;
 
-                    // Loop through records
-                    foreach ($records as $key => $record) {
+                        foreach ($coins as $key => $coin) {
 
-                 ?>
-                            <tr>
-                              <td><?=$counter;?></td>
-                              <td><?=$record['coin'];?></td>
-                              <td>BTC_<?=$record['currencypair'];?></td>
-                              <td><?=$record['buy'];?></td>
-                              <td><?=$record['buy'];?></td>
-                              <td><?=$record['change'];?></td>
-                              <!-- <td><?=$record['buy'];?></td>
-                              <td><?=$record['buy'];?></td>
-                              <td><?=$record['change'];?></td> -->
+                          $new_value = $coin['current_buy'];
+                          $old_value = $coin['buy'];
+                          $current_total_trade_volume = $coin['total_buy_trade'];
+                          $difference = abs($new_value - $old_value);
+                          $current_percentage = (($new_value / $current_total_trade_volume ) * 100);
+                          $current_percentage = round( $current_percentage , 2, PHP_ROUND_HALF_EVEN);
 
-                            </tr>
+                          ?>
+
+                          <tr>
+                            <td><?=$counter;?></td>
+                            <td><?=$coin['coin'];?></td>
+                            <td><?=$coin['currencypair'];?></td>
+                            <td><?=$coin['current_buy'];?></td>
+                            <td><?=$coin['total_buy_trade'];?></td>
+                            <td><?=$coin['buy'];?></td>
+                            <td><?=$coin['last_total_buy_trade'];?></td>
+                            <td><?=$current_percentage;?></td>
+
+
+                          </tr>
 
                     <?php
-                            $counter++;
-                            }
+                        $counter++;
+                        }
 
-                            // arsort($percentage_array);
-                            //
-                            // // Get the top coin as the most popular coin
-                            // $most_popular_coin = array_keys($percentage_array)[0];
-                            // $most_popular_coin_value = array_values($percentage_array)[0];
-                            //
-                            // $current_top_coin_details = GetCurrentTopCoinDetails($most_popular_coin);
-                            //
-                            // $word = $prev_top_coin_current_buy_trade < $prev_top_coin_buy_trade ? "an increase" : "a decrease";
 
                      ?>
 
@@ -115,7 +112,12 @@
 
           </div>
 
+
+
+
       </div>
+
+
 
     </div>
 

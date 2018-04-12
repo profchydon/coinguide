@@ -76,6 +76,7 @@
                         <option value="bittrex">Bittrex</option>
                         <option value="kucoin">Kucoin</option>
                         <option value="binance">Binance</option>
+                        <option value="tradesatoshi">TradeSatoshi</option>
                       </select>
                    </div>
 

@@ -1,7 +1,7 @@
 <?php
-    include '../function/hitbtc.php';
+    include '../function/tradesatoshi.php';
 
-    $coins = getAll();
+    $all = getAllByLimit();
 
     if (isset($_POST['go'])) {
 
@@ -47,7 +47,7 @@
 
    ?>
 
-    <h2 id="heading">HitBTC Cryptocurrencies Trade Guide</h2>
+    <h2 id="heading">TradeSatoshi Cryptocurrencies Trade Guide</h2>
     <!-- <h5>Sorted by popularity, in descending order</h5> -->
     <div class="container">
 
@@ -72,40 +72,40 @@
                  </thead>
                  <tbody>
 
-                    <?php
+                   <?php
 
-                        $counter = 1;
+                       $counter = 1;
 
-                        foreach ($coins as $key => $coin) {
+                       foreach ($all as $key => $coin) {
 
-                          $new_value = $coin['current_buy'];
-                          $old_value = $coin['buy'];
-                          $current_total_trade_volume = $coin['total_buy_trade'];
-                          $difference = abs($new_value - $old_value);
-                          $current_percentage = (($new_value / $current_total_trade_volume ) * 100);
-                          $current_percentage = round( $current_percentage , 2, PHP_ROUND_HALF_EVEN);
+                         $new_value = $coin['current_buy'];
+                         $old_value = $coin['buy'];
+                         $current_total_trade_volume = $coin['total_buy_trade'];
+                         $difference = abs($new_value - $old_value);
+                         $current_percentage = (($new_value / $current_total_trade_volume ) * 100);
+                         $current_percentage = round( $current_percentage , 2, PHP_ROUND_HALF_EVEN);
 
-                          ?>
+                         ?>
 
-                          <tr>
-                            <td><?=$counter;?></td>
-                            <td><?=$coin['coin'];?></td>
-                            <td><?=$coin['currencypair'];?></td>
-                            <td><?=$coin['current_buy'];?></td>
-                            <td><?=$coin['total_buy_trade'];?></td>
-                            <td><?=$coin['buy'];?></td>
-                            <td><?=$coin['last_total_buy_trade'];?></td>
-                            <!-- <td><?=$current_percentage;?></td> -->
-
-
-                          </tr>
-
-                    <?php
-                        $counter++;
-                        }
+                         <tr>
+                           <td><?=$counter;?></td>
+                           <td><?=$coin['coin'];?></td>
+                           <td><?=$coin['currencypair'];?></td>
+                           <td><?=$coin['current_buy'];?></td>
+                           <td><?=$coin['total_buy_trade'];?></td>
+                           <td><?=$coin['buy'];?></td>
+                           <td><?=$coin['last_total_buy_trade'];?></td>
+                           <td><?=$current_percentage;?></td>
 
 
-                     ?>
+                         </tr>
+
+                   <?php
+                       $counter++;
+                       }
+
+
+                    ?>
 
                </tbody>
                </table>
@@ -121,4 +121,6 @@
 
     </div>
 
-</body></html>
+</body>
+
+</html>

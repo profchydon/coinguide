@@ -71,7 +71,7 @@ foreach ($all as $key => $value) {
     $total_buy_trade = $total_buy_trade + $value['current_buy'];
 
 }
-//
+
 updateTotalBuy ($total_buy_trade);
-//
-//  ?>
+
+ ?>

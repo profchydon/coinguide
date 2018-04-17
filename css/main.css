@@ -11,6 +11,10 @@
     /* margin: 0px; */
 }
 
+.container.tab-holder {
+    margin-bottom: 20px;
+}
+
 img.img.img-responsive.market-logo {
     width: 160px;
 }

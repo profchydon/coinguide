@@ -42,14 +42,56 @@ function getBuy ($currencypair) {
 
 }
 
+function updateBuy ($buy, $currencypair)
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('UPDATE hibtc SET current_buy = :buy WHERE currencypair = :currencypair');
+    $query->bindParam(':currencypair' , $currencypair);
+    $query->bindParam(':buy' , $buy);
+    if ($query->execute()) {
+        return true;
+    }else {
+      return false;
+    }
+}
 
-
+function updateEthBuy ($buy, $currencypair)
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('UPDATE hibtceth SET current_buy = :buy WHERE currencypair = :currencypair');
+    $query->bindParam(':currencypair' , $currencypair);
+    $query->bindParam(':buy' , $buy);
+    if ($query->execute()) {
+        return true;
+    }else {
+      return false;
+    }
+}
 
 
 function saveData ($coin, $symbol) {
 
     require '../database/database.php';
     $query = $pdo->prepare('INSERT into hibtc (coin, symbol) values (:coin, :symbol)  ');
+    $query->bindParam(':coin' , $coin);
+    $query->bindParam(':symbol' , $symbol);
+
+    if ($query->execute()) {
+
+      return true;
+
+    }else {
+
+      return false;
+
+    }
+
+}
+
+function saveEthData ($coin, $symbol) {
+
+    require '../database/database.php';
+    $query = $pdo->prepare('INSERT into hibtceth (coin, symbol) values (:coin, :symbol)  ');
     $query->bindParam(':coin' , $coin);
     $query->bindParam(':symbol' , $symbol);
 
@@ -78,12 +120,25 @@ function updateTable ($symbol, $currencypair)
     }
 }
 
-function updateBuy ($buy, $currencypair)
+function updateEthTable ($symbol, $currencypair)
 {
     require '../database/database.php';
-    $query = $pdo->prepare('UPDATE hibtc SET current_buy = :buy WHERE currencypair = :currencypair');
+    $query = $pdo->prepare('UPDATE hibtceth SET currencypair = :currencypair WHERE symbol = :symbol');
     $query->bindParam(':currencypair' , $currencypair);
-    $query->bindParam(':buy' , $buy);
+    $query->bindParam(':symbol' , $symbol);
+    if ($query->execute()) {
+        return true;
+    }else {
+      return false;
+    }
+}
+
+function saveEth ($coin, $symbol)
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('INSERT into hibtceth (coin, symbol) values (:coin, :symbol) ');
+    $query->bindParam(':coin' , $coin);
+    $query->bindParam(':symbol' , $symbol);
     if ($query->execute()) {
         return true;
     }else {
@@ -103,10 +158,35 @@ function updateTotalBuy ($total_buy_trade)
     }
 }
 
+function updateTotalBuyEthMarket ($total_buy_trade)
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('UPDATE hibtceth SET total_buy_trade = :total_buy_trade');
+    $query->bindParam(':total_buy_trade' , $total_buy_trade);
+    if ($query->execute()) {
+        return true;
+    }else {
+      return false;
+    }
+}
+
 function getAll ()
 {
     require '../database/database.php';
     $query = $pdo->prepare('SELECT * FROM hibtc ORDER BY buy DESC LIMIT 30');
+
+    if ($query->execute()) {
+      $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+      return $data;
+
+}
+
+function getAllEthMarket ()
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('SELECT * FROM hibtceth ORDER BY buy DESC LIMIT 30');
 
     if ($query->execute()) {
       $data = $query->fetchAll(PDO::FETCH_ASSOC);

@@ -3,6 +3,8 @@
 
     $coins = getAll();
 
+    $coins_eth = getAllEthMarket();
+
     if (isset($_POST['go'])) {
 
       function redirect($location) {
@@ -47,78 +49,190 @@
 
    ?>
 
-    <h2 id="heading">HitBTC Cryptocurrencies Trade Guide</h2>
-    <!-- <h5>Sorted by popularity, in descending order</h5> -->
-    <div class="container">
+   <div class="container tab-holder">
+     <!-- Nav tabs -->
+     <ul class="nav nav-tabs" role="tablist">
+       <li role="presentation" class="active"><a href="#hibtc" aria-controls="hibtc" role="tab" data-toggle="tab">BTC MARKET</a></li>
+       <li role="presentation"><a href="#hibtceth" aria-controls="hibtceth" role="tab" data-toggle="tab">ETH MARKET</a></li>
+     </ul>
 
-      <div class="row">
+   </div>
 
-          <div class="col-md-12">
-             <h4>Top Gaining Cryptocurrencies</h4>
-             <table class="table table-striped table-responsive">
-                 <thead>
-                     <tr>
+   <!-- Tab panes -->
+   <div class="tab-content">
+     <div role="tabpanel" class="tab-pane active" id="hibtc">
 
-                         <th>S/no</th>
-                         <th>Coin</th>
-                         <th>Currency Pair</th>
-                         <th>Buy trade Vol.</th>
-                         <th>Total buy trade vol.</th>
-                         <th>Buy trade Vol. 5mins ago</th>
-                         <th>Total buy trade vol. 5 mins ago</th>
-                         <!-- <th>% Change</th> -->
+       <!-- <h5>Sorted by popularity, in descending order</h5> -->
+       <div class="container">
 
-                     </tr>
-                 </thead>
-                 <tbody>
+         <h2 id="heading">HitBTC BTC MARKET Cryptocurrencies Trade Guide</h2>
 
-                    <?php
+         <div class="row">
 
-                        $counter = 1;
+             <div class="col-md-12">
+                <h4>Top Gaining Cryptocurrencies</h4>
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
 
-                        foreach ($coins as $key => $coin) {
+                            <th>S/no</th>
+                            <th>Coin</th>
+                            <th>Currency Pair</th>
+                            <th>Buy trade Vol.</th>
+                            <th>Total buy trade vol.</th>
+                            <th>Buy trade Vol. 5mins ago</th>
+                            <th>Total buy trade vol. 5 mins ago</th>
+                            <!-- <th>% Change</th> -->
 
-                          $new_value = $coin['current_buy'];
-                          $old_value = $coin['buy'];
-                          $current_total_trade_volume = $coin['total_buy_trade'];
-                          $difference = abs($new_value - $old_value);
-                          $current_percentage = (($new_value / $current_total_trade_volume ) * 100);
-                          $current_percentage = round( $current_percentage , 2, PHP_ROUND_HALF_EVEN);
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                          ?>
+                       <?php
 
-                          <tr>
-                            <td><?=$counter;?></td>
-                            <td><?=$coin['coin'];?></td>
-                            <td><?=$coin['currencypair'];?></td>
-                            <td><?=$coin['current_buy'];?></td>
-                            <td><?=$coin['total_buy_trade'];?></td>
-                            <td><?=$coin['buy'];?></td>
-                            <td><?=$coin['last_total_buy_trade'];?></td>
-                            <!-- <td><?=$current_percentage;?></td> -->
+                           $counter = 1;
 
+                           foreach ($coins as $key => $coin) {
 
-                          </tr>
+                             $new_value = $coin['current_buy'];
+                             $old_value = $coin['buy'];
+                             $current_total_trade_volume = $coin['total_buy_trade'];
+                             $difference = abs($new_value - $old_value);
+                             $current_percentage = (($new_value / $current_total_trade_volume ) * 100);
+                             $current_percentage = round( $current_percentage , 2, PHP_ROUND_HALF_EVEN);
 
-                    <?php
-                        $counter++;
-                        }
+                             ?>
 
-
-                     ?>
-
-               </tbody>
-               </table>
-
-          </div>
-
+                             <tr>
+                               <td><?=$counter;?></td>
+                               <td><?=$coin['coin'];?></td>
+                               <td><?=$coin['currencypair'];?></td>
+                               <td><?=$coin['current_buy'];?></td>
+                               <td><?=$coin['total_buy_trade'];?></td>
+                               <td><?=$coin['buy'];?></td>
+                               <td><?=$coin['last_total_buy_trade'];?></td>
+                               <!-- <td><?=$current_percentage;?></td> -->
 
 
+                             </tr>
 
-      </div>
+                       <?php
+                           $counter++;
+                           }
+
+
+                        ?>
+
+                  </tbody>
+                  </table>
+
+             </div>
+
+         </div>
+
+       </div>
+
+     </div>
+
+     <div role="tabpanel" class="tab-pane" id="hibtceth">
+
+           <h2 id="heading">HitBTC ETH Market Cryptocurrencies Trade Guide</h2>
+           <!-- <h5>Sorted by popularity, in descending order</h5> -->
+           <div class="container">
+
+             <div class="row">
+
+                 <div class="col-md-12">
+                    <h4>Top Gaining Cryptocurrencies</h4>
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+
+                                <th>S/no</th>
+                                <th>Coin</th>
+                                <th>Currency Pair</th>
+                                <th>Buy trade Vol.</th>
+                                <th>Total buy trade vol.</th>
+                                <th>Buy trade Vol. 5mins ago</th>
+                                <th>Total buy trade vol. 5 mins ago</th>
+                                <th>% Change</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                           <?php
+
+                               $counter = 1;
+
+                               foreach ($coins_eth as $key => $coin) {
+
+                                 $new_value = $coin['current_buy'];
+                                 $old_value = $coin['buy'];
+                                 $current_total_trade_volume = $coin['total_buy_trade'];
+                                 $difference = abs($new_value - $old_value);
+                                 $current_percentage = (($new_value / $current_total_trade_volume ) * 100);
+                                 $current_percentage = round( $current_percentage , 2, PHP_ROUND_HALF_EVEN);
+
+                                 ?>
+
+                                 <tr>
+                                   <td><?=$counter;?></td>
+                                   <td><?=$coin['coin'];?></td>
+                                   <td><?=$coin['currencypair'];?></td>
+                                   <td><?=$coin['current_buy'];?></td>
+                                   <td><?=$coin['total_buy_trade'];?></td>
+                                   <td><?=$coin['buy'];?></td>
+                                   <td><?=$coin['last_total_buy_trade'];?></td>
+                                   <td><?=$current_percentage;?></td>
+
+
+                                 </tr>
+
+                           <?php
+                               $counter++;
+                               }
+
+
+                            ?>
+
+                      </tbody>
+                      </table>
+
+                 </div>
 
 
 
-    </div>
 
-</body></html>
+             </div>
+
+
+
+           </div>
+     </div>
+
+   </div>
+
+
+
+
+</body>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript">
+
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+$('#myTabs a[href="#hibtc"]').tab('show') // Select tab by name
+$('#myTabs a[href="#hibtceth"]').tab('show') // Select tab by name
+
+</script>
+
+</html>

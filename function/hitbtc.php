@@ -68,6 +68,18 @@ function updateEthBuy ($buy, $currencypair)
     }
 }
 
+function updateUsdtBuy ($buy, $currencypair)
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('UPDATE hibtcusdt SET current_buy = :buy WHERE currencypair = :currencypair');
+    $query->bindParam(':currencypair' , $currencypair);
+    $query->bindParam(':buy' , $buy);
+    if ($query->execute()) {
+        return true;
+    }else {
+      return false;
+    }
+}
 
 function saveData ($coin, $symbol) {
 
@@ -107,6 +119,25 @@ function saveEthData ($coin, $symbol) {
 
 }
 
+function saveUsdtData ($coin, $symbol) {
+
+    require '../database/database.php';
+    $query = $pdo->prepare('INSERT into hibtcusdt (coin, symbol) values (:coin, :symbol)  ');
+    $query->bindParam(':coin' , $coin);
+    $query->bindParam(':symbol' , $symbol);
+
+    if ($query->execute()) {
+
+      return true;
+
+    }else {
+
+      return false;
+
+    }
+
+}
+
 function updateTable ($symbol, $currencypair)
 {
     require '../database/database.php';
@@ -124,6 +155,19 @@ function updateEthTable ($symbol, $currencypair)
 {
     require '../database/database.php';
     $query = $pdo->prepare('UPDATE hibtceth SET currencypair = :currencypair WHERE symbol = :symbol');
+    $query->bindParam(':currencypair' , $currencypair);
+    $query->bindParam(':symbol' , $symbol);
+    if ($query->execute()) {
+        return true;
+    }else {
+      return false;
+    }
+}
+
+function updateUsdtTable ($symbol, $currencypair)
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('UPDATE hibtcusdt SET currencypair = :currencypair WHERE symbol = :symbol');
     $query->bindParam(':currencypair' , $currencypair);
     $query->bindParam(':symbol' , $symbol);
     if ($query->execute()) {
@@ -170,6 +214,18 @@ function updateTotalBuyEthMarket ($total_buy_trade)
     }
 }
 
+function updateTotalBuyUsdtMarket ($total_buy_trade)
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('UPDATE hibtcusdt SET total_buy_trade = :total_buy_trade');
+    $query->bindParam(':total_buy_trade' , $total_buy_trade);
+    if ($query->execute()) {
+        return true;
+    }else {
+      return false;
+    }
+}
+
 function getAll ()
 {
     require '../database/database.php';
@@ -196,5 +252,17 @@ function getAllEthMarket ()
 
 }
 
+function getAllUsdtMarket ()
+{
+    require '../database/database.php';
+    $query = $pdo->prepare('SELECT * FROM hibtcusdt ORDER BY buy DESC');
+
+    if ($query->execute()) {
+      $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+      return $data;
+
+}
 
  ?>

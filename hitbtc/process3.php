@@ -11,7 +11,7 @@ foreach ($coins as $key => $coin) {
       $coin_name = $coin['fullName'];
       $symbol = $coin['id'];
 
-      $save_data = saveEthData ($coin_name , $symbol);
+      $save_data = saveUsdtData ($coin_name , $symbol);
 
     }
 
@@ -21,26 +21,25 @@ $summary = getSummary();
 
 foreach ($summary as $key => $coins) {
 
-  if ($coins['quoteCurrency'] == "ETH") {
+  if ($coins['quoteCurrency'] == "USD") {
 
       $symbol = $coins['baseCurrency'];
       $currencypair = $coins['id'];
 
-      $update_data = updateEthTable ($symbol, $currencypair);
+      $update_data = updateUsdtTable ($symbol, $currencypair);
 
   }
 
 }
 
-$all = getAllEthMarket();
+
+$all = getAllUsdtMarket();
 
 $total_buy_trade = 0;
 
 foreach ($all as $key => $pair) {
 
     $currencypair = $pair['currencypair'];
-
-
 
     if (!empty($currencypair)) {
 
@@ -58,14 +57,14 @@ foreach ($all as $key => $pair) {
 
       }
 
-      $update = updateEthBuy ($buy, $currencypair);
+      $update = updateUsdtBuy ($buy, $currencypair);
       $total_buy_trade = $total_buy_trade + $buy;
 
     }
 
 }
 
-updateTotalBuyEthMarket ($total_buy_trade);
+updateTotalBuyUsdtMarket ($total_buy_trade);
 
 foreach ($all as $key => $value) {
 
@@ -73,6 +72,6 @@ foreach ($all as $key => $value) {
 
 }
 
-updateTotalBuyEthMarket ($total_buy_trade);
+updateTotalBuyUsdtMarket ($total_buy_trade);
 
  ?>

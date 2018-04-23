@@ -76,24 +76,24 @@ foreach ($check as $key => $market_id) {
 
 }
 
-  // foreach ($records as $key => $summary) {
-  //
-  //     $currencypair = $summary['MarketAssetCode'];
-  //     $market_id = $summary['MarketID'];
-  //     $url = 'https://www.coinexchange.io/api/v1/getmarketsummary?market_id='.$market_id;
-  //     $market_summary = file_get_contents($url);
-  //     $market_summary = json_decode($market_summary , true);
-  //     $market_summary = $market_summary['result'];
-  //     $buy = $market_summary['BuyOrderCount'];
-  //     $change = $market_summary['Change'];
-  //
-  //     $update = updatebuy ($buy, $change, $currencypair, $market_id);
-  //
-  //     if ($update) {
-  //       echo "yes";
-  //     }else {
-  //       echo "string";
-  //     }
-  // }
+  foreach ($records as $key => $summary) {
+
+      $currencypair = $summary['MarketAssetCode'];
+      $market_id = $summary['MarketID'];
+      $url = 'https://www.coinexchange.io/api/v1/getmarketsummary?market_id='.$market_id;
+      $market_summary = file_get_contents($url);
+      $market_summary = json_decode($market_summary , true);
+      $market_summary = $market_summary['result'];
+      $buy = $market_summary['BuyOrderCount'];
+      $change = $market_summary['Change'];
+
+      $update = updatebuy ($buy, $change, $currencypair, $market_id);
+
+      if ($update) {
+        echo "yes";
+      }else {
+        echo "string";
+      }
+  }
 
 ?>

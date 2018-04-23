@@ -6,12 +6,15 @@
 
             <select class="form-control" name="market" id="select">
               <option value="option" selected="" disabled="">Select an exchange to view market data</option>
-              <option value="poloniex">Poloniex</option>
-              <option value="coinexchange">Coinexchange</option>
+              <option value="binance">Binance</option>
               <option value="bittrex">Bittrex</option>
+              <option value="coinexchange">Coinexchange</option>
+              <option value="cryptopia">Cryptopia</option>
               <option value="hitbtc">HitBTC</option>
               <option value="kucoin">Kucoin</option>
-              <option value="binance">Binance</option>
+              <option value="poloniex">Poloniex</option>
+              <option value="tradesatoshi">TradeSatoshi</option>
+
             </select>
          </div>
         </div>

@@ -1,0 +1,53 @@
+Coinguide Frequently Asked Questions (FAQ)
+This is a summary of frequently asked questions on Coinguide
+
+What is Coinguide
+Coinguide is a web app cryptocurrency trade guide that aims to keep traders informed about the popular coins (coins with the highest number of buy orders within a specific time range) on poloniex by fetching records from different exchanges using their API and rating these records according to their buy orders.
+
+How it works:
+Coinguide contains market data from different cryptocurrency exchange markets to give crypto investors an up to date analysis of market buy orders and trending coins.
+
+What makes coinguide Unique?
+Coinguide provides traders with an up to date information that will help them make trading decisions. It is a reliable platform that accurately ranks coins/tokens based on how much traders are buying and selling using a mathematical algorithms.
+
+Does Coinguide Give gives users, traders or investors any financial advice?
+Coinguide isn't a website that gives investors any financial advice on which coin to buy or not, Coinguide simply gets the required data from exchanges, processes the data using an algorithm and tells users the coins gaining popularity and those loosing popularity.
+
+Is there any hidden charges?
+Using coinguide web app is totally free and there is no hidden charge of any kind attached to it.
+What difference exist between a "Coin" and a "Token" as displayed on the site? 
+The difference is simple and clear, A Coin is a cryptocurrency that can operate independently while A Token is a cryptocurrency that depends on another cryptocurrency as a platform to operate.
+
+How do I Trade a cryptocurrency? 
+Coinguide does not directly sell any cryptocurrency, we only report on the trading activities of thousands of markets.
+However, you can check sites like binance or bittrex for help.
+
+How do you calculate your 24 hours?
+The 24 hour time changed is calculated based on the current time and rolled backwards for a period of 24hours.
+
+Can I use screenshot, data or any content from your site for any personal or commercial purpose?
+Everyone is free to use our data or content but we kindly ask that you cite Coinguide as your source.
+
+What is Market Capitalization
+Market Capitalization is one way to rank the relative size of a cryptocurrency.
+
+How is market capitalization calculated?
+Market capitalization is calculated by simply multiplying the Price by the Circulating Supply. 
+
+Market Cap = Price X Circulating Supply.
+ 
+What is Circulating Supply?
+Circulating Supply is the best approximation of the number of coins that are circulating in the market and in the general public's hands.
+
+What is Total Supply?
+Total Supply is the total amount of coins in existence right now (minus any coins that have been verifiably burned).
+
+What is Max supply?
+Max Supply is the best approximation of the maximum amount of coins that will ever exist in the lifetime of the cryptocurrency.
+
+Feel free to contact us via the following:
+On Discord: profchydon#3371
+Github: https://github.com/profchydon/coinguide
+
+
+

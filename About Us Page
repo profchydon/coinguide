@@ -4,7 +4,7 @@ The world is fast adopting crpto-currency and a lot of tokens/coins are been tra
 With this, there is need for a reliable and up to date platform to guide traders by giving them the necessary details and information that they need to carry on their daily trade. It was due to this necessity that Coinguide was born.
 
 Coinguide is a web app with the aim of guiding crypto traders on the most popular Cryptocurrencies. 
-This is achieved by fetching records from poloniex with the help of their api and rating these records according to their buy orders.
+This is achieved by fetching records from different cryptocurrency exchanges with the help of their api and rating these records according to their buy orders.
 
 Coinguide also aims to keep traders informed about the popular coins. Popular coins are coins with the highest number of orders within a specific time range. 
 

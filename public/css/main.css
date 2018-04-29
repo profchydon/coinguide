@@ -15,6 +15,19 @@
     margin-bottom: 20px;
 }
 
+p.about-p {
+    font-size: 17px;
+    line-height: 30px;
+}
+
+section.about-section {
+    padding: 10px 70px;
+}
+
+a.signup-a {
+    color: #fff;
+}
+
 img.img.img-responsive.market-logo {
     width: 160px;
 }
@@ -79,6 +92,10 @@ thead {
 }
 
 .logo-holder {
+    padding: 21px;
+}
+
+.logo-holder-1 {
     padding: 21px;
 }
 

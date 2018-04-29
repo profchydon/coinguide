@@ -13,6 +13,9 @@
 
 Route::get('/', 'PagesController@welcome');
 Route::post('/market', 'PagesController@market');
+Route::get('/about', 'PagesController@about');
+Route::get('/privacy', 'PagesController@privacy');
+Route::get('/faqs', 'PagesController@faqs');
 
 Route::get('/tradesatoshi', 'TradesatoshiController@getMarketHistory');
-Route::get('/cryptopia', 'CryptopiaController@viewMarket');
+Route::get('/cryptopia', 'CryptopiaController@getMarketHistory');

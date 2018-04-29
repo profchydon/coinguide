@@ -99,7 +99,7 @@ class TradesatoshiRepository
 
       $all = Tradesatoshi::get();
       return json_decode(json_encode($all) , TRUE);
-      
+
   }
 
 }

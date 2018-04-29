@@ -44,7 +44,20 @@
 
             <!-- <p class=""> <img class="img img-responsive logo" src="img/logo.png" alt=""></p> -->
             <div class="logo-holder">
-                <p class=""> <img class="img img-responsive market-logo" src="img/logo.png" alt=""></p>
+                <div class="col-md-4">
+                  <p class=""> <img class="img img-responsive market-logo" src="img/logo.png" alt=""></p>
+
+                </div>
+                <div class="col-md-offset-2 col-md-6">
+                  <ul style="margin-right: 0px;" class="nav navbar-nav pull-right">
+
+                    <li> <a href="/about" class="signup-a">About Us</a> </li>
+                    <li> <a href="/privacy" class="signup-a">Privacy Policy</a> </li>
+                    <li> <a href="/faqs" class="signup-a">FAQs</a> </li>
+
+                  </ul>
+                </div>
+
             </div>
 
             <div class="row up-row">

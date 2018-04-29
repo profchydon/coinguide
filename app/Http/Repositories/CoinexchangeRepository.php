@@ -2,16 +2,16 @@
 
 namespace App\Http\Repositories;
 
-use App\Cryptopia;
+use App\Coinexchange;
 
-class CryptopiaRepository
+class CoinexchangeRepository
 {
 
-  protected $cryptopia;
+  protected $coinexchange;
 
-  public function __construct(Cryptopia $cryptopia)
+  public function __construct(Coinexchange $coinexchange)
   {
-      $this->cryptopia = $cryptopia;
+      $this->coinexchange = $coinexchange;
   }
 
   /**
@@ -22,16 +22,14 @@ class CryptopiaRepository
   public function getCoins ()
   {
 
-    $coins = file_get_contents('https://www.cryptopia.co.nz/api/GetTradePairs');
+      $records = file_get_contents('https://www.coinexchange.io/api/v1/getmarkets');
 
-    // Convert JSOn resource to object
-    $coins = json_decode($coins);
+      $records = json_decode($records , true);
 
-    // Convert object to array
-    $coins = json_decode(json_encode($coins) , TRUE);
+      $records = $records['result'];
 
-    return $coins;
-
+      return $records;
+      
   }
 
 

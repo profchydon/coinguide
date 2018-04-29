@@ -16,4 +16,6 @@
 <body>
   <div id="banner">
       <p class=""> <img class="img img-responsive market-logo" src="../img/logo.png" alt=""></p>
+
+      
   </div>

@@ -15,6 +15,8 @@ class CryptopiaController extends Controller
     {
         $this->cryptopia = $cryptopia;
 
+        ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+
     }
 
     public function getCoins ()
@@ -22,7 +24,7 @@ class CryptopiaController extends Controller
 
         $coins = $this->cryptopia->getCoins();
 
-        return $coins;
+        return $coins['Data'];
 
     }
 
@@ -57,6 +59,11 @@ class CryptopiaController extends Controller
 
         $currencypair = $this->getcurrencyPair();
 
+        // echo "<pre>";
+        //
+        // var_dump($currencypair);
+        // dd();
+
         $total_buy_trade = 0;
 
         foreach ($currencypair as $key => $pair) {
@@ -65,7 +72,7 @@ class CryptopiaController extends Controller
 
             if (!empty($currencypair)) {
 
-              $trades = getBuy ($currencypair);
+              $trades = $this->cryptopia->getBuy ($currencypair);
 
               $trades = $trades['Data'];
 

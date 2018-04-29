@@ -34,4 +34,9 @@ class PagesController extends Controller
     {
       return view ('privacy');
     }
+
+    public function faqs ()
+    {
+      return view ('faqs');
+    }
 }

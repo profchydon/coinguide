@@ -15,3 +15,4 @@ Route::get('/', 'PagesController@welcome');
 Route::post('/market', 'PagesController@market');
 
 Route::get('/tradesatoshi', 'TradesatoshiController@getMarketHistory');
+Route::get('/cryptopia', 'CryptopiaController@viewMarket');

@@ -19,3 +19,4 @@ Route::get('/faqs', 'PagesController@faqs');
 
 Route::get('/tradesatoshi', 'TradesatoshiController@getMarketHistory');
 Route::get('/cryptopia', 'CryptopiaController@getMarketHistory');
+Route::get('/gdax', 'GdaxController@saveCoins');

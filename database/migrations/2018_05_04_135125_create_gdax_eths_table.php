@@ -14,8 +14,15 @@ class CreateGdaxEthsTable extends Migration
     public function up()
     {
         Schema::create('gdax_eths', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+          $table->increments('id');
+          $table->string('coin');
+          $table->string('product_id');
+          $table->string('currencypair');
+          $table->integer('buy');
+          $table->integer('total_buy_trade');
+          $table->integer('current_buy');
+          $table->integer('last_total_buy_trade');
+          $table->timestamps();
         });
     }
 
